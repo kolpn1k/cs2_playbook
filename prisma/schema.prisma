@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Lineup {
+  id          Int           @id @default(autoincrement())
+  map         String
+  utilityType String        @map("utility_type")
+  title       String
+  description String
+  imagePath   String?       @map("image_path")
+  isInsta     Boolean       @default(false) @map("is_insta")
+  createdAt   DateTime      @default(now()) @map("created_at")
+  images      LineupImage[]
+
+  @@index([map, utilityType])
+  @@map("lineups")
+}
+
+model LineupImage {
+  id        Int    @id @default(autoincrement())
+  lineupId  Int    @map("lineup_id")
+  imagePath String @map("image_path")
+  order     Int    @default(0)
+  lineup    Lineup @relation(fields: [lineupId], references: [id], onDelete: Cascade)
+
+  @@map("lineup_images")
+}

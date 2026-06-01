@@ -1,0 +1,18 @@
+@import "tailwindcss";
+
+body {
+  background-color: #030712;
+  color: #f9fafb;
+}
+
+/* Thin scrollbar for map tab overflow */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 3px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: #374151;
+  border-radius: 9999px;
+}
