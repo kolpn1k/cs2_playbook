@@ -62,12 +62,12 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads')
+    const uploadDir = path.join(process.cwd(), 'uploads')
     await mkdir(uploadDir, { recursive: true })
 
     const savedPaths: string[] = []
     for (const img of imageFiles) {
-      const ext = img.name.split('.').pop() ?? 'png'
+      const ext = (img.name.split('.').pop() ?? 'png').toLowerCase()
       const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 10)}.${ext}`
       const bytes = await img.arrayBuffer()
       await writeFile(path.join(uploadDir, filename), Buffer.from(bytes))

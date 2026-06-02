@@ -30,7 +30,7 @@ export async function DELETE(
       ...(lineup.imagePath ? [lineup.imagePath] : []),
     ]
     await Promise.allSettled(
-      pathsToDelete.map((p) => unlink(path.join(process.cwd(), 'public', p)))
+      pathsToDelete.map((p) => unlink(path.join(process.cwd(), p.replace(/^\/uploads\//, 'uploads/'))))
     )
 
     // Cascade deletes lineup_images rows automatically
