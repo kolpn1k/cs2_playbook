@@ -36,6 +36,7 @@ export default function LineupCard({ lineup, onDelete, onOpen }: LineupCardProps
             src={lineup.images[0]}
             alt={lineup.title}
             fill
+            unoptimized
             className="object-cover"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
